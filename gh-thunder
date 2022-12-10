@@ -34,6 +34,11 @@ while [[ $# -gt 0 ]]; do
     OPTION="status"
     shift # past argument
     ;;
+  -l | --link)
+    OPTION="link"
+    shift # past argument
+    ;;
+
 
   -* | --*)
     help
@@ -50,10 +55,9 @@ THUNDER_DIR="$HOME/Library/Application Support/Code/User/globalStorage/rangav.vs
 if [ -z "$OPTION" ]; then
   help
 fi
-cd "$THUNDER_DIR"
-ls -list
 if [[ "$OPTION" == "push" ]]
 then
+  cd "$THUNDER_DIR"
   git add .
   echo "pushing files from $THUNDER_DIR to $(git remote get-url origin)"
 
@@ -61,11 +65,16 @@ then
   git push -u origin master
 elif [[ "$OPTION" == "pull" ]]
 then
+  cd "$THUNDER_DIR"
   echo "pulling files from $(git remote get-url origin) to $THUNDER_DIR"
   git pull origin master
 elif [[ "$OPTION" == "status" ]]
 then
+  cd "$THUNDER_DIR"
   git status
+elif [[ "$OPTION" == "link" ]]
+then
+  ln -s "$THUNDER_DIR"
 fi
 
 
