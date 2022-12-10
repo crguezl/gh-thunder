@@ -11,6 +11,7 @@ function help() {
   echo "  * and that the directory is a git repository"
   echo "  * and the remote is in the form:"
   echo "      git@github.com:<user>/rangav.vscode-thunder-client.git"
+  echo "VScode has to be reloaded to see the synched changes"
   echo "Usage:"
   echo "  $0 [-p|--push] [-P|--pull]"
   exit 0
