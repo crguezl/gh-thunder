@@ -43,11 +43,16 @@ if [ -z "$OPTION" ]; then
 fi
 cd "$THUNDER_DIR"
 ls -list
-if [ "$OPTION" == "push" ]; then
+if [[ "$OPTION" == "push" ]]
+then
   git add .
+  echo "pushing files from $THUNDER_DIR to $(git remote get-url origin)"
+
   git commit -m "Update thunder client examples"
   git push -u origin master
-elsif [ "$OPTION" == "pull" ]; then
+elif [[ "$OPTION" == "pull" ]]
+then
+  echo "pulling files from $(git remote get-url origin) to $THUNDER_DIR"
   git pull origin master
 fi
 
