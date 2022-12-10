@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-#!/bin/bash
+# todo: 
+# create repo
+
 function help() {
   echo "gh extension to save thunder client examples to github"
-  echo "  * Assumes the existence of a thunder client directory in the default location"
+  echo "  * Assumes the existence of a thunder client directory in the default location for a mac:"
   echo "     $HOME/Library/Application Support/Code/User/globalStorage/rangav.vscode-thunder-client/"
   echo "  * and that the directory is a git repository"
   echo "  * and the remote is in the form:"
@@ -23,6 +25,10 @@ while [[ $# -gt 0 ]]; do
     ;;
   -P | --pull)
     OPTION="pull"
+    shift # past argument
+    ;;
+  -s | --status)
+    OPTION="status"
     shift # past argument
     ;;
 
@@ -53,7 +59,10 @@ then
 elif [[ "$OPTION" == "pull" ]]
 then
   echo "pulling files from $(git remote get-url origin) to $THUNDER_DIR"
-  git pull origin master
+  git pull origin maste
+elif [[ "$OPTION" == "status" ]]
+then
+  git status
 fi
 
 
