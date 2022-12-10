@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -e
+
+#!/bin/bash
+function help() {
+  echo "gh extension to save thunder client examples to github"
+  echo "  * Assumes the existence of a thunder client directory in the default location"
+  echo "     $HOME/Library/Application Support/Code/User/globalStorage/rangav.vscode-thunder-client/"
+  echo "  * and that the directory is a git repository"
+  echo "  * and the remote is in the form:"
+  echo "      git@github.com:<user>/rangav.vscode-thunder-client.git"
+  echo "Usage:"
+  echo "  $0 [-p|--push] [-P|--pull]"
+  exit 0
+}
+
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+  -p | --push)
+    OPTION="push"
+    shift # past argument
+    ;;
+  -P | --pull)
+    OPTION="pull"
+    shift # past argument
+    ;;
+
+  -* | --*)
+    help
+    ;;
+  *)
+    POSITIONAL_ARGS+=("$1") # save positional arg
+    shift # past argument
+    ;;
+  esac
+done
+
+
+THUNDER_DIR="$HOME/Library/Application Support/Code/User/globalStorage/rangav.vscode-thunder-client/"
+if [ -z "$OPTION" ]; then
+  help
+fi
+cd "$THUNDER_DIR"
+ls -list
+if [ "$OPTION" == "push" ]; then
+  git add .
+  git commit -m "Update thunder client examples"
+  git push -u origin master
+elsif [ "$OPTION" == "pull" ]; then
+  git pull origin master
+fi
+
+
