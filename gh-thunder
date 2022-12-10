@@ -59,7 +59,7 @@ then
 elif [[ "$OPTION" == "pull" ]]
 then
   echo "pulling files from $(git remote get-url origin) to $THUNDER_DIR"
-  git pull origin maste
+  git pull origin master
 elif [[ "$OPTION" == "status" ]]
 then
   git status
