@@ -13,7 +13,9 @@ function help() {
   echo "      git@github.com:<user>/rangav.vscode-thunder-client.git"
   echo "VScode has to be reloaded to see the synched changes"
   echo "Usage:"
-  echo "  $0 [-p|--push] [-P|--pull]"
+  echo "  $0 [-p|--push]"
+  echo "  $0 [-P|--pull]"
+  echo "  $0 [-s|--status]"
   exit 0
 }
 
